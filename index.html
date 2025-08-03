@@ -122,20 +122,6 @@
       cursor: pointer;
     }
 
-    .flower {
-      position: fixed;
-      top: -50px;
-      font-size: 24px;
-      animation: fall linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-      }
-    }
-
     .dark-mode {
       background: #1a1a1a !important;
       color: #eee !important;
@@ -243,6 +229,7 @@
     <p>© <span id="year"></span> Harsha. All Rights Reserved.</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
     const modal = document.getElementById('modal');
     const enterBtn = document.getElementById('enterBtn');
@@ -275,35 +262,22 @@
       familyDiv.classList.toggle("hidden");
     }
 
-    function createFlowers(count) {
-      for (let i = 0; i < count; i++) {
-        const flower = document.createElement('div');
-        flower.textContent = '🌸';
-        flower.className = 'flower';
-        flower.style.left = Math.random() * 100 + 'vw';
-        flower.style.animationDuration = 5 + Math.random() * 5 + 's';
-        document.body.appendChild(flower);
+    function timeBasedGreeting() {
+      const hour = new Date().getHours();
+      const greetingEl = document.getElementById('greeting');
+      if (hour < 12) {
+        greetingEl.textContent = 'Good Morning and Welcome!';
+      } else if (hour < 18) {
+        greetingEl.textContent = 'Good Afternoon and Welcome!';
+      } else {
+        greetingEl.textContent = 'Good Evening and Welcome!';
       }
     }
-
-    function timeBasedGreeting() {
-  const hour = new Date().getHours();
-  const greetingEl = document.getElementById('greeting');
-  if (hour < 12) {
-    greetingEl.textContent = 'Good Morning and Welcome!';
-  } else if (hour < 18) {
-    greetingEl.textContent = 'Good Afternoon and Welcome!';
-  } else {
-    greetingEl.textContent = 'Good Evening and Welcome!';
-  }
-}
-
 
     window.onload = () => {
       document.getElementById("year").textContent = new Date().getFullYear();
       timeBasedGreeting();
-      createFlowers(25);
     };
   </script>
 </body>
-</html>
+</html
