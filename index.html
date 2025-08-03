@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mounika & Jeevan Wedding Invitation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom right, #fffaf0, #ffebcd);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px 20px;
+      background-color: #8b4513;
+      color: white;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      font-family: 'Times New Roman', serif;
+      margin-bottom: 10px;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      margin: 25px auto;
+      max-width: 500px;
+      padding: 25px;
+      animation: popIn 1s ease;
+    }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #8b0000;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .special-note {
+      background: #fff8dc;
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 500px;
+      border: 1px dashed #8b4513;
+      border-radius: 10px;
+      font-style: italic;
+      animation: fadeIn 2s ease;
+    }
+
+    footer {
+      margin: 40px 10px 20px;
+      padding-top: 10px;
+      font-size: 0.9em;
+      color: #555;
+      border-top: 1px solid #ccc;
+    }
+
+    .audio-control {
+      margin-top: 20px;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    #enterBtn {
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      background-color: #ff6f61;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .controls {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 10px;
+      z-index: 1001;
+    }
+
+    .controls button {
+      font-size: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .flower {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    .dark-mode {
+      background: #1a1a1a !important;
+      color: #eee !important;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .event-card {
+        margin: 15px;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Modal -->
+  <div class="modal" id="modal">
+    <h1 id="greeting">You're Invited</h1>
+    <p>Welcome to Mounika & Jeevan's Wedding Website</p>
+    <button id="enterBtn">Enter</button>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button id="muteBtn" onclick="toggleMute()">🔇</button>
+    <button onclick="toggleDarkMode()">🌙</button>
+    <button onclick="shareInvite()">💌</button>
+  </div>
+
+  <!-- Music -->
+  <audio id="bgMusic" autoplay muted loop preload="auto">
+    <source src="Alanati.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Header -->
+  <header>
+    <h1>Mounika & Jeevan</h1>
+    <p>Together with their families, joyfully invite you to celebrate their wedding</p>
+  </header>
+
+  <!-- Event Cards -->
+  <div class="event-card">
+    <h2>Mehendi Ceremony</h2>
+    <p><strong>Date:</strong> August 12, 2025 at 5:00 PM</p>
+    <p><strong>Venue:</strong> Our Residency, Kurnool</p>
+    <a class="map-link" href="https://maps.app.goo.gl/SHZXhuFngLozJ22B7" target="_blank">View Map</a>
+  </div>
+
+  <div class="event-card">
+    <h2>Haldi Ceremony</h2>
+    <p><strong>Date:</strong> August 13, 2025 at 8:00 AM</p>
+    <p><strong>Venue:</strong> Our Residency, Kurnool</p>
+    <a class="map-link" href="https://maps.app.goo.gl/SHZXhuFngLozJ22B7" target="_blank">View Map</a>
+  </div>
+
+  <div class="event-card">
+    <h2>Wedding Ceremony</h2>
+    <p><strong>Date:</strong> August 14, 2025 at 3:49 AM</p>
+    <p><strong>Venue:</strong> Vishnupriya Kalyana Mandapam, Kadapa</p>
+    <a class="map-link" href="https://maps.app.goo.gl/U9zAK4RA8d7k4R2Z6" target="_blank">View Map</a>
+  </div>
+
+  <div class="event-card">
+    <h2>Reception</h2>
+    <p><strong>Date:</strong> August 15, 2025 at 10:00 AM</p>
+    <p><strong>Venue:</strong> Ranga Function Hall, Kurnool</p>
+    <a class="map-link" href="https://maps.app.goo.gl/dW4PMwuGcX9ndhGp8" target="_blank">View Map</a>
+  </div>
+
+  <!-- Family Block -->
+  <div class="event-card">
+    <h3 onclick="toggleFamily()" style="cursor:pointer;">Family Invitation (Click to View)</h3>
+    <div id="familyDetails" class="hidden">
+      <p>A.E. Maheswari & A.E. Venkateswarla Goud</p>
+      <p>Contact: <a href="tel:+919959250238">9959250238</a></p>
+    </div>
+  </div>
+
+  <!-- Harsha’s Note -->
+  <div class="special-note">
+    With warm regards and heartfelt joy,  
+    <br><strong>A.E. Harsha Vardhan Goud</strong>  
+    invites you to be part of this cherished celebration.
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>We look forward to sharing this beautiful occasion with you.</p>
+    <p>Save the Dates: August 12–15, 2025</p>
+    <p>© <span id="year"></span> Harsha. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const enterBtn = document.getElementById('enterBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const muteBtn = document.getElementById('muteBtn');
+
+    enterBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      bgMusic.muted = false;
+      bgMusic.play();
+    });
+
+    function toggleMute() {
+      bgMusic.muted = !bgMusic.muted;
+      muteBtn.textContent = bgMusic.muted ? '🔇' : '🔊';
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function shareInvite() {
+      const message = encodeURIComponent("You're invited to Mounika & Jeevan's Wedding! 🎉 Join us:");
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://wa.me/?text=${message}%20${url}`, '_blank');
+    }
+
+    function toggleFamily() {
+      const familyDiv = document.getElementById("familyDetails");
+      familyDiv.classList.toggle("hidden");
+    }
+
+    function createFlowers(count) {
+      for (let i = 0; i < count; i++) {
+        const flower = document.createElement('div');
+        flower.textContent = '🌸';
+        flower.className = 'flower';
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.animationDuration = 5 + Math.random() * 5 + 's';
+        document.body.appendChild(flower);
+      }
+    }
+
+    function timeBasedGreeting() {
+  const hour = new Date().getHours();
+  const greetingEl = document.getElementById('greeting');
+  if (hour < 12) {
+    greetingEl.textContent = 'Good Morning and Welcome!';
+  } else if (hour < 18) {
+    greetingEl.textContent = 'Good Afternoon and Welcome!';
+  } else {
+    greetingEl.textContent = 'Good Evening and Welcome!';
+  }
+}
+
+
+    window.onload = () => {
+      document.getElementById("year").textContent = new Date().getFullYear();
+      timeBasedGreeting();
+      createFlowers(25);
+    };
+  </script>
+</body>
+</html>
